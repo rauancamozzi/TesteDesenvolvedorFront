@@ -93,6 +93,7 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
     - Organização do projeto e clareza na estrutura dos arquivos.
     -C ódigo bem documentado e estruturado em TypeScript, usando boas práticas de programação.
 
-## ** Entrega do Projeto
+## Entrega do Projeto
+- **Opções**
     - Preferencialmente, a entrega do projeto pode ser feita via [StackBlitz](https://stackblitz.com/) para fácil visualização do código e execução do projeto.
     - Como alternativa, você pode realizar um fork deste repositório em seu próprio GitHub e enviar o link do repositório com sua implementação.
