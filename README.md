@@ -73,19 +73,19 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
     - Integração correta e eficiente com a PokeAPI para obtenção dos dados.
     - Manipulação de respostas da API, incluindo paginação (se necessário) e exibição correta dos dados.
 - **Implementação de Componentes**
-    -Implementação clara e organizada de componentes usando React e MUI.
-    -Uso consistente de tipagem TypeScript para garantir robustez e clareza do código.
+    - Implementação clara e organizada de componentes usando React e MUI.
+    - Uso consistente de tipagem TypeScript para garantir robustez e clareza do código.
 - **Interface Responsiva e Design**
-    -Utilização de React para construir uma interface amigável e responsiva.
-    -A listagem e o Drawer devem se adaptar bem a diferentes tamanhos de tela, incluindo dispositivos móveis.
+    - Utilização de React para construir uma interface amigável e responsiva.
+    - A listagem e o Drawer devem se adaptar bem a diferentes tamanhos de tela, incluindo dispositivos móveis.
 - **Interatividade e Feedback do Usuário**
-    -Funcionamento correto das opções de like/dislike e campo de comentário.
-    -Feedback visual ao usuário sobre o sucesso ou falha das operações (POST) de comentário e interações.
-    -Manutenção de uma experiência de usuário fluida e intuitiva durante as interações.
+    - Funcionamento correto das opções de like/dislike e campo de comentário.
+    - Feedback visual ao usuário sobre o sucesso ou falha das operações (POST) de comentário e interações.
+    - Manutenção de uma experiência de usuário fluida e intuitiva durante as interações.
 - **Qualidade do Código**
-    -Organização do projeto e clareza na estrutura dos arquivos.
-    -Código bem documentado e estruturado em TypeScript, usando boas práticas de programação.
+    - Organização do projeto e clareza na estrutura dos arquivos.
+    -C ódigo bem documentado e estruturado em TypeScript, usando boas práticas de programação.
 
 ## Entrega do Projeto
--Preferencialmente, a entrega do projeto pode ser feita via [StackBlitz](https://stackblitz.com/) para fácil visualização do código e execução do projeto.
--Como alternativa, você pode realizar um fork deste repositório em seu próprio GitHub e enviar o link do repositório com sua implementação.
+    - Preferencialmente, a entrega do projeto pode ser feita via [StackBlitz](https://stackblitz.com/) para fácil visualização do código e execução do projeto.
+    - Como alternativa, você pode realizar um fork deste repositório em seu próprio GitHub e enviar o link do repositório com sua implementação.
