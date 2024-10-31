@@ -1,6 +1,6 @@
 # Teste Prático de Frontend - Integração com PokeAPI, TypeScript e Material UI
 
-Bem-vindo ao repositório de teste prático para a posição de Desenvolvedor Frontend. Este teste avalia habilidades em TypeScript, integração com APIs REST, e uso do Material Design (MUI). Abaixo, você encontrará uma descrição detalhada dos requisitos do projeto, as expectativas para implementação e os critérios de avaliação.
+Bem-vindo ao repositório de teste prático para a posição de Desenvolvedor Frontend. Este teste avalia habilidades em TypeScript, integração com APIs REST, e uso do React. Abaixo, você encontrará uma descrição detalhada dos requisitos do projeto, as expectativas para implementação e os critérios de avaliação.
 
 ## Objetivo do Projeto
 Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, que permita listar e detalhar informações de Pokémon usando a [PokeAPI](https://pokeapi.co/docs/v2). Ao concluir, a aplicação deverá demonstrar habilidades de integração com API, manipulação de dados e interações de usuário.
@@ -10,7 +10,7 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
 ### 1. Listagem de Pokémon
 - **Objetivo**: Obter e exibir uma lista de Pokémon através de uma requisição GET na PokeAPI.
 - **Detalhes da Implementação**:
-  - Utilize a **PokeAPI** para recuperar dados básicos dos Pokémon e exiba-os em uma interface organizada e responsiva, utilizando componentes do Material Design (MUI).
+  - Utilize a **PokeAPI** para recuperar dados básicos dos Pokémon e exiba-os em uma interface organizada e responsiva, utilizando componentes do React.
   - Cada item da lista de Pokémon deve apresentar:
     - Nome do Pokémon
     - Imagem representativa
@@ -56,7 +56,7 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
 ## Tecnologias Requeridas
 - **TypeScript**: para tipagem estática e boas práticas de código.
 - **React** (ou framework frontend de sua escolha): para criação dos componentes e estrutura da interface.
-- **Material Design (MUI)**: para construção de componentes responsivos e visualmente atraentes.
+- **React**: para construção de componentes responsivos e visualmente atraentes.
 - **PokeAPI**: API pública usada para obter as informações dos Pokémon.
 - **API Mock**: fornecida para simular o envio de comentários e interações.
 
@@ -66,3 +66,31 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
    Clone este repositório em seu ambiente local:
    ```bash
    git clone https://github.com/seu-usuario/frontend-pokemon-test.git
+
+
+## Critérios de Avaliação
+- **Integração com API**
+
+-Integração correta e eficiente com a PokeAPI para obtenção dos dados.
+-Manipulação de respostas da API, incluindo paginação (se necessário) e exibição correta dos dados.
+-Implementação de Componentes
+
+-Implementação clara e organizada de componentes usando React e MUI.
+-Uso consistente de tipagem TypeScript para garantir robustez e clareza do código.
+-Interface Responsiva e Design
+
+-Utilização de React para construir uma interface amigável e responsiva.
+-A listagem e o Drawer devem se adaptar bem a diferentes tamanhos de tela, incluindo dispositivos móveis.
+-Interatividade e Feedback do Usuário
+
+-Funcionamento correto das opções de like/dislike e campo de comentário.
+-Feedback visual ao usuário sobre o sucesso ou falha das operações (POST) de comentário e interações.
+-Manutenção de uma experiência de usuário fluida e intuitiva durante as interações.
+-Qualidade do Código
+
+-Organização do projeto e clareza na estrutura dos arquivos.
+-Código bem documentado e estruturado em TypeScript, usando boas práticas de programação.
+
+## Entrega do Projeto
+-Preferencialmente, a entrega do projeto pode ser feita via [StackBlitz](https://stackblitz.com/) para fácil visualização do código e execução do projeto.
+-Como alternativa, você pode realizar um fork deste repositório em seu próprio GitHub e enviar o link do repositório com sua implementação.
