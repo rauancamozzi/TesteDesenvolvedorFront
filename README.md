@@ -70,10 +70,9 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
 
 ## Critérios de Avaliação
 - **Integração com API**
-
--Integração correta e eficiente com a PokeAPI para obtenção dos dados.
--Manipulação de respostas da API, incluindo paginação (se necessário) e exibição correta dos dados.
--Implementação de Componentes
+    - Integração correta e eficiente com a PokeAPI para obtenção dos dados.
+    - Manipulação de respostas da API, incluindo paginação (se necessário) e exibição correta dos dados.
+    - Implementação de Componentes
 
 -Implementação clara e organizada de componentes usando React e MUI.
 -Uso consistente de tipagem TypeScript para garantir robustez e clareza do código.
