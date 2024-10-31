@@ -6,8 +6,8 @@ Bem-vindo ao repositório de teste prático para a posição de Desenvolvedor Fr
 ## Objetivo do Projeto
 Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, que permita listar e detalhar informações de Pokémon usando a [PokeAPI](https://pokeapi.co/docs/v2). Ao concluir, a aplicação deverá demonstrar habilidades de integração com API, manipulação de dados e interações de usuário.
 
-    - [Data Grid MUI / React](https://mui.com/x/react-data-grid/)
-    - [Drawer MUI / React](https://mui.com/material-ui/react-drawer/)
+[Data Grid MUI / React](https://mui.com/x/react-data-grid/)
+[Drawer MUI / React](https://mui.com/material-ui/react-drawer/)
 
 
 ## Estrutura e Requisitos do Projeto
