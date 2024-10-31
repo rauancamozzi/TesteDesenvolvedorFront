@@ -2,8 +2,13 @@
 
 Bem-vindo ao repositório de teste prático para a posição de Desenvolvedor Frontend. Este teste avalia habilidades em TypeScript, integração com APIs REST, e uso do React. Abaixo, você encontrará uma descrição detalhada dos requisitos do projeto, as expectativas para implementação e os critérios de avaliação.
 
+
 ## Objetivo do Projeto
 Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, que permita listar e detalhar informações de Pokémon usando a [PokeAPI](https://pokeapi.co/docs/v2). Ao concluir, a aplicação deverá demonstrar habilidades de integração com API, manipulação de dados e interações de usuário.
+
+    - [Data Grid MUI / React](https://mui.com/x/react-data-grid/)
+    - [Drawer MUI / React](https://mui.com/material-ui/react-drawer/)
+
 
 ## Estrutura e Requisitos do Projeto
 
@@ -14,12 +19,12 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
   - Cada item da lista de Pokémon deve apresentar:
     - Nome do Pokémon
     - Imagem representativa
-  - Cada item deve ser clicável, abrindo um Drawer com informações adicionais do Pokémon.
+  - Cada item deve ser clicável(Via botão Action ou linha), abrindo um Drawer com informações adicionais do Pokémon.
 
 ### 2. Drawer com Detalhes do Pokémon
 - **Objetivo**: Mostrar informações detalhadas de um Pokémon em um Drawer lateral, permitindo interações adicionais do usuário.
 - **Detalhes da Implementação**:
-  - Ao clicar em um Pokémon da lista, abra um Drawer (usando o componente MUI) que exiba informações detalhadas, incluindo:
+  - Ao clicar em um Pokémon da lista, abra um Drawer (usando o componente react) que exiba informações detalhadas, incluindo:
     - Nome
     - Imagem
     - Habilidades
@@ -42,20 +47,19 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
         "idPokemon": "idPokemon",
         "comentarioPokemon": "comentarioPokemon",
         "likeDislike": true/false,
-        "gitHubId": "seuGitHubId",
-        "id": "id"
+        "gitHubId": "seuGitHubId", # ID do seu github
     }'
     ```
   - As informações que devem ser enviadas incluem:
-    - Nome do Pokémon
-    - ID do Pokémon
-    - Comentário do usuário
-    - Estado de like/dislike (true/false)
+    - Nome do Pokémon #Nome do pokémon que recebeu valor
+    - ID do Pokémon # id do pokémon dentro da API
+    - Comentário do usuário # Valor preenchido pelo usuário
+    - Estado de like/dislike (true/false) # valor recebido da interação com usuário
   - Exiba feedback ao usuário informando o sucesso ou a falha da operação POST.
 
 ## Tecnologias Requeridas
 - **TypeScript**: para tipagem estática e boas práticas de código.
-- **React** (ou framework frontend de sua escolha): para criação dos componentes e estrutura da interface.
+- **MUI** (ou framework frontend de sua escolha): para criação dos componentes e estrutura da interface.
 - **React**: para construção de componentes responsivos e visualmente atraentes.
 - **PokeAPI**: API pública usada para obter as informações dos Pokémon.
 - **API Mock**: fornecida para simular o envio de comentários e interações.
@@ -65,7 +69,9 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
 1. **Clonando o Repositório**
    Clone este repositório em seu ambiente local:
    ```bash
-   git clone https://github.com/seu-usuario/frontend-pokemon-test.git
+   git clone https://github.com/ContractFlow/TesteDesenvolvedorFront.git
+
+2. **Adicionar breve descrição no codigo em explicacao.md**
 
 
 ## Critérios de Avaliação
@@ -73,7 +79,7 @@ Desenvolver uma aplicação frontend com uma interface intuitiva e responsiva, q
     - Integração correta e eficiente com a PokeAPI para obtenção dos dados.
     - Manipulação de respostas da API, incluindo paginação (se necessário) e exibição correta dos dados.
 - **Implementação de Componentes**
-    - Implementação clara e organizada de componentes usando React e MUI.
+    - Implementação clara e organizada de componentes usando React.
     - Uso consistente de tipagem TypeScript para garantir robustez e clareza do código.
 - **Interface Responsiva e Design**
     - Utilização de React para construir uma interface amigável e responsiva.
