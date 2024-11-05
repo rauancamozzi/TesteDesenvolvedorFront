@@ -1,14 +1,11 @@
 import axios from 'axios';
-import { Pokemon, PokemonDetails } from '../types/Pokemon';
-
-const BASE_URL = 'https://pokeapi.co/api/v2';
+import { Pokemon } from '../types/Pokemon';
 
 export const fetchPokemons = async (limit: number = 100): Promise<Pokemon[]> => {
   try {
-    const response = await axios.get(`${BASE_URL}/pokemon`, {
+    const response = await axios.get('https://pokeapi.co/api/v2/pokemon', {
       params: { limit }
     });
-
     return response.data.results;
   } catch (error) {
     console.error("Error fetching pokemons", error);
@@ -16,9 +13,9 @@ export const fetchPokemons = async (limit: number = 100): Promise<Pokemon[]> => 
   }
 };
 
-export const fetchPokemonDetails = async (url: string): Promise<PokemonDetails> => {
+export const fetchPokemonDetails = async (name: string): Promise<Pokemon> => {
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}/`);
     return response.data;
   } catch (error) {
     console.error("Error fetching pokemon details", error);
