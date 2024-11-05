@@ -1,4 +1,5 @@
 import { Drawer, Typography, IconButton, Box } from '@mui/material';
+import Comment from '../components/Comment';
 import CloseIcon from '@mui/icons-material/Close';
 import { Pokemon } from '../types/Pokemon';
 
@@ -28,6 +29,11 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({ open, onClose, rowData })
 
     return types.map(item => item.charAt(0).toUpperCase() + item.slice(1)).join(', ');
   }
+
+  const handleCommentSubmit = (comment: string) => {
+    // Aqui você pode enviar o comentário para o servidor ou exibi-lo na tela
+    console.log("Comentário enviado:", comment);
+  };
 
   return (
     <Drawer
@@ -59,6 +65,8 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({ open, onClose, rowData })
         <Typography>Tipos: {getPokemonTypes()}</Typography>
         <Typography>Experiência base: {rowData.base_experience}</Typography>
       </Box>
+
+      <Comment onSubmit={handleCommentSubmit} />
     </Drawer>
   )
 }
