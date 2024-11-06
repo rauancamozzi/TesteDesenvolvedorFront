@@ -2,6 +2,7 @@ import { Drawer, Typography, IconButton, Box } from '@mui/material';
 import Comment from '../components/Comment';
 import CloseIcon from '@mui/icons-material/Close';
 import { Pokemon } from '../types/Pokemon';
+import LikeDislikeButton from './LikeDislikeButton';
 
 interface PokemonDrawerProps {
   open: boolean;
@@ -31,7 +32,6 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({ open, onClose, rowData })
   }
 
   const handleCommentSubmit = (comment: string) => {
-    // Aqui você pode enviar o comentário para o servidor ou exibi-lo na tela
     console.log("Comentário enviado:", comment);
   };
 
@@ -67,6 +67,7 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({ open, onClose, rowData })
       </Box>
 
       <Comment onSubmit={handleCommentSubmit} />
+      <LikeDislikeButton />
     </Drawer>
   )
 }
