@@ -10,7 +10,7 @@ interface LikeDislikeButtonProps {
 const LikeDislikeButton: React.FC<LikeDislikeButtonProps> = ({ onChoice }) => {
   const [choice, setChoice] = useState<'like' | 'dislike' | null>(null);
 
-  const handleLike = () => {
+  const onClickLike = () => {
     if (choice === 'like') {
       setChoice(null);
       onChoice(null);
@@ -20,7 +20,7 @@ const LikeDislikeButton: React.FC<LikeDislikeButtonProps> = ({ onChoice }) => {
     }
   };
 
-  const handleDislike = () => {
+  const onClickDislike = () => {
     if (choice === 'dislike') {
       setChoice(null);
       onChoice(null);
@@ -31,16 +31,40 @@ const LikeDislikeButton: React.FC<LikeDislikeButtonProps> = ({ onChoice }) => {
   }
 
   return (
-    <Stack direction="row">
+    <Stack
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: 1/5,
+        padding: '12px',
+        gap: '2px'
+      }}
+    >
         <IconButton
-          color={choice === "like" ? "success" : "default"}
-          onClick={handleLike}
+          color={choice === 'like' ? 'success' : 'default'}
+          onClick={onClickLike}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
+            width: 'auto',
+            height: 'auto',
+            borderRadius: '8px',
+          }}
         >
           <ThumbUpIcon />
         </IconButton>
         <IconButton
-          color={choice === "dislike" ? "error" : "default"}
-          onClick={handleDislike}
+          color={choice === 'dislike' ? 'error' : 'default'}
+          onClick={onClickDislike}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
+            width: 'auto',
+            height: 'auto',
+            borderRadius: '8px',
+          }}
         >
           <ThumbDownIcon />
         </IconButton>

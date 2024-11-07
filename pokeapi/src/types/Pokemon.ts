@@ -357,6 +357,7 @@ export interface Stat2 {
 export interface Type {
   slot: number
   type: Type2
+  name: string;
 }
 
 export interface Type2 {
