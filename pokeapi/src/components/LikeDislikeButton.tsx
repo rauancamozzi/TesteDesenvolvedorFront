@@ -1,44 +1,50 @@
-import React, { useState } from 'react';
+import { IconButton, Stack } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-import { IconButton, Stack } from '@mui/material';
+import React, { useState } from 'react';
 
-const LikeDislikeButton = () => {
-  const [like, setLike] = useState<boolean>(false);
-  const [dislike, setDislike] = useState<boolean>(false);
-  const [userChoice, setUserChoice] = useState<'like' | 'dislike' | null>(null);
+interface LikeDislikeButtonProps {
+  onChoice: (choice: 'like' | 'dislike' | null) => void;
+}
+
+const LikeDislikeButton: React.FC<LikeDislikeButtonProps> = ({ onChoice }) => {
+  const [choice, setChoice] = useState<'like' | 'dislike' | null>(null);
 
   const handleLike = () => {
-    if (userChoice === 'like') {
-      setLike(false);
-      setUserChoice(null);
+    if (choice === 'like') {
+      setChoice(null);
+      onChoice(null);
     } else {
-      setLike(true);
-      if (userChoice === 'dislike') setDislike(false);
-      setUserChoice('like');
+      setChoice('like');
+      onChoice('like');
     }
   };
 
   const handleDislike = () => {
-    if (userChoice === 'dislike') {
-      setDislike(false);
-      setUserChoice(null);
+    if (choice === 'dislike') {
+      setChoice(null);
+      onChoice(null);
     } else {
-      setDislike(true);
-      if (userChoice === 'like') setLike(false);
-      setUserChoice('dislike');
+      setChoice('dislike');
+      onChoice('dislike');
     }
   }
 
   return (
     <Stack direction="row">
-      <IconButton color={userChoice === 'like' ? 'success' : 'default'} onClick={handleLike}>
-        <ThumbUpIcon />
-      </IconButton>
-      <IconButton color={userChoice === 'dislike' ? 'error' : 'default'} onClick={handleDislike}>
-        <ThumbDownIcon />
-      </IconButton>
-    </Stack>
+        <IconButton
+          color={choice === "like" ? "success" : "default"}
+          onClick={handleLike}
+        >
+          <ThumbUpIcon />
+        </IconButton>
+        <IconButton
+          color={choice === "dislike" ? "error" : "default"}
+          onClick={handleDislike}
+        >
+          <ThumbDownIcon />
+        </IconButton>
+      </Stack>
   )
 }
 

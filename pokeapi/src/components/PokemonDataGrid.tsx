@@ -30,13 +30,11 @@ const columns: GridColDef[] = [
   },
 ];
 
-const PokemonDataGrid = () => {
+const DataGridComponent = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [pokemonDetails, setPokemonDetails] = useState<Pokemon[]>([]);
-
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState<Pokemon | null>(null);
 
@@ -106,4 +104,4 @@ const PokemonDataGrid = () => {
   );
 }
 
-export default PokemonDataGrid;
+export default DataGridComponent;

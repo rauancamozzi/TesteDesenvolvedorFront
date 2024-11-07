@@ -1,6 +1,5 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-
+import { Box, TextField, Button } from '@mui/material';
 interface CommentProps {
   onSubmit: (comment: string) => void;
 }
@@ -8,7 +7,8 @@ interface CommentProps {
 const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
   const [comment, setComment] = useState<string>('');
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // Comment
+  const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setComment(event.target.value);
   }
 
@@ -18,21 +18,16 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
       setComment('');
     }
   }
-  
+
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      gap={2}
-      width="100%"
-    >
-      <TextField 
+    <Box display="flex" flexDirection="column" gap={2} width="100%">
+      <TextField
         label="Escreva um comentário"
         variant="outlined"
         multiline
         rows={4}
         value={comment}
-        onChange={handleChange}
+        onChange={handleCommentChange}
         fullWidth
       />
       <Button
@@ -44,7 +39,7 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
         Enviar
       </Button>
     </Box>
-  )
-}
+  );
+};
 
 export default Comment;
