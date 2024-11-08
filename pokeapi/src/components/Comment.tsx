@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Box, TextField, Button, Snackbar, Alert, useTheme, useMediaQuery } from "@mui/material";
+import React, { useState } from 'react';
+import { Box, TextField, Button, Snackbar, Alert, useTheme, useMediaQuery } from '@mui/material';
 interface CommentProps {
   onSubmit: (comment: string) => void;
 }
 
 const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
-  const [comment, setComment] = useState<string>("");
+  const [comment, setComment] = useState<string>('');
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
-  const [snackbarMessage, setSnackbarMessage] = useState<string>("");
+  const [snackbarMessage, setSnackbarMessage] = useState<string>('');
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -19,14 +19,14 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
   const submitComment = async () => {
     if (comment.trim()) {
       try {
-        await onSubmit(comment);
+        onSubmit(comment);
         setSnackbarMessage('Avaliação enviada com sucesso!');
         setSnackbarSeverity('success');
       } catch (error) {
         setSnackbarMessage('Erro ao enviar a avaliação: ' + error);
         setSnackbarSeverity('error');
       }
-      setComment("");
+      setComment('');
       setOpenSnackbar(true);
     }
   };
@@ -36,10 +36,10 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={2} width="100%" boxSizing="border-box">
+    <Box display='flex' flexDirection='column' gap={2} width='100%' boxSizing='border-box'>
       <TextField
-        label="Escreva um comentário"
-        variant="outlined"
+        label='Escreva um comentário'
+        variant='outlined'
         multiline
         rows={2}
         value={comment}
@@ -62,9 +62,9 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
         },
         }}
       />
-      <Box display="flex" justifyContent="flex-end" width="100%">
+      <Box display='flex' justifyContent='flex-end' width='100%'>
         <Button
-          variant="contained"
+          variant='contained'
           onClick={submitComment}
           disabled={!comment.trim()}
           sx={{

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { Pokemon } from '../types/Pokemon';
 
-export const getPokemons = async (limit: number = 100): Promise<Pokemon[]> => {
+export const getPokemons = async (offset: number, limit: number): Promise<Pokemon[]> => {
   try {
     const response = await axios.get('https://pokeapi.co/api/v2/pokemon', {
-      params: { limit }
+      params: { offset, limit }
     });
     return response.data.results;
   } catch (error) {

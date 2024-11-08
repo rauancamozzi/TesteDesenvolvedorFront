@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography } from '@mui/material';
 
 interface TitleProps {
   text: string;
@@ -15,8 +15,8 @@ const Title: React.FC<TitleProps> = ({ text, type }) => {
     <Typography
       sx={{
         fontSize: setFontSize(),
-        fontWeight: "bold",
-        color: "#374151",
+        fontWeight: 'bold',
+        color: '#374151',
       }}
     >
       {text}

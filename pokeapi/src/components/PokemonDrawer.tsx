@@ -1,15 +1,17 @@
-import { Drawer, Typography, IconButton, Box, useMediaQuery, useTheme } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import { Pokemon } from "../types/Pokemon";
-import React, { useEffect, useState } from "react";
-import api from "../api";
-import LikeDislikeButton from "./LikeDislikeButton";
-import Comment from "../components/Comment";
-import Tag from "./Tag";
-import formatPokemonName from "../utils/formatPokemonName";
-import formatPokemonAbilityName from "../utils/formatPokemonAbilityName";
-import Card from "./Card";
-import Title from "./Title";
+import { Drawer, Typography, IconButton, Box, useMediaQuery, useTheme, Alert } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { Pokemon } from '../types/Pokemon';
+import React, { useEffect, useState } from 'react';
+import api from '../api';
+import LikeDislikeButton from './LikeDislikeButton';
+import Comment from '../components/Comment';
+import Tag from './Tag';
+import formatPokemonName from '../utils/formatPokemonName';
+import formatPokemonAbilityName from '../utils/formatPokemonAbilityName';
+import Card from './Card';
+import Title from './Title';
+import { getGitHubId } from '../services/githubService';
+import { PokemonApi } from '../types/PokemonApi';
 
 interface PokemonDrawerProps {
   open: boolean;
@@ -17,28 +19,34 @@ interface PokemonDrawerProps {
   rowData: Pokemon | null;
 }
 
-interface PokemonApi {
-  id: number;
-  name: string;
-  comment: string;
-  rating: "like" | "dislike" | null;
-  githubID: string;
-}
-
 const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
   open,
   onClose,
   rowData,
 }) => {
-  const [userChoice, setUserChoice] = useState<"like" | "dislike" | null>(null);
+  const [userChoice, setUserChoice] = useState<'like' | 'dislike' | null>(null);
   const [pokemons, setPokemons] = useState<PokemonApi[]>([]);
+  const [githubID, setGitHubID] = useState('');
+  const [error, setError] = useState<string | null>(null);
   
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
+    const loadGitHubData = async () => {
+      try {
+        const id = await getGitHubId('rauancamozzi');
+        setGitHubID(id);
+      } catch (error) {
+        setError('Erro ao abrir o componente Drawer, ao buscar dados do GitHub: ' + error);
+      }
+    }
+    
     loadPokemons();
+    loadGitHubData();
   }, []);
+
+  if (error) return <Alert severity='error'>{error}</Alert>;
 
   const getPokemonAbilities = () => {
     const abilities = rowData?.abilities.map((item) => {
@@ -48,9 +56,9 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
     return (
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "4px",
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '4px',
         }}
       >
         {abilities?.map((item, index) => (
@@ -61,13 +69,24 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
   };
 
   const getPokemonTypes = () => {
-    return rowData?.types.map((value: string, index: number) => {
-      return <Tag value={value} key={index} />;
-    });
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '8px',
+          marginTop: '8px'
+        }}
+      >
+        {rowData?.types.map((name, index) => (
+          <Tag value={String(name)} key={index} />
+        ))}
+      </Box>
+    );
   };
 
   const loadPokemons = async () => {
-    const response = await api.get<PokemonApi[]>("/pokemons");
+    const response = await api.get<PokemonApi[]>('/pokemons');
     setPokemons(response.data);
   };
 
@@ -75,20 +94,20 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
     addPokemon(comment);
   };
 
-  const updateUserChoice = (choice: "like" | "dislike" | null) => {
+  const updateUserChoice = (choice: 'like' | 'dislike' | null) => {
     setUserChoice(choice);
   };
 
   const addPokemon = async (comment: string) => {
     const newPokemon = {
-      id: rowData?.id,
-      name: rowData?.name,
-      comment: comment,
-      rating: userChoice,
-      githubID: "rauancamozzi",
+      idPokemon: rowData?.id,
+      nomePokemon: rowData?.name,
+      comentarioPokemon: comment,
+      likeDislike: userChoice,
+      githubId: githubID,
     };
 
-    const response = await api.post<PokemonApi>("/pokemons", newPokemon);
+    const response = await api.post<PokemonApi>('/pokemons', newPokemon);
     setPokemons([...pokemons, response.data]);
   };
 
@@ -131,7 +150,7 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
       <Box
         sx={{
           display: "flex",
-          flexDirection: isMobile ? 'column-reverse' : 'none',
+          flexDirection: isMobile ? "column-reverse" : "none",
           width: "100%",
           height: "auto",
           padding: "12px",
@@ -143,15 +162,18 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
         <Box
           sx={{
             display: "flex",
-            flexDirection: isMobile ? 'row' : 'column',
-            alignItems: isMobile ? 'center' : 'none',
-            width: isMobile ? '100%' : '50%',
-            gap: isMobile ? '4px' : '12px',
+            flexDirection: isMobile ? "row" : "column",
+            alignItems: isMobile ? "center" : "none",
+            width: isMobile ? "100%" : "50%",
+            gap: isMobile ? "4px" : "12px",
           }}
         >
           <Card title="Altura" text={`${rowData.height / 10}m`} />
           <Card title="Peso" text={`${rowData.weight / 10}kg`} />
-          <Card title="Experiência base" text={`${rowData.base_experience} XP`} />
+          <Card
+            title="Experiência base"
+            text={`${rowData.base_experience} XP`}
+          />
         </Box>
 
         <Box
@@ -181,7 +203,7 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: isMobile ? 'center' : 'none',
+          alignItems: isMobile ? "center" : "none",
           gap: "8px",
           backgroundColor: "#f9fafb",
           height: "100%",
@@ -190,18 +212,18 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
         <Box
           sx={{
             display: "flex",
-            flexDirection: 'row',
-            width: '100%',
+            flexDirection: "row",
+            width: "100%",
           }}
         >
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
-              boxSizing: 'border-box',
-              width: isMobile ? '100%' : 'auto',
+              boxSizing: "border-box",
+              width: isMobile ? "100%" : "auto",
               flex: 1,
-              padding: '12px'
+              padding: "12px",
             }}
           >
             <Title text="Tipos" type="subtitle" />
@@ -209,8 +231,8 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                gap: '8px',
-                marginTop: '8px'
+                gap: "8px",
+                marginTop: "8px",
               }}
             >
               {getPokemonTypes()}
@@ -221,10 +243,10 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
             sx={{
               display: "flex",
               flexDirection: "column",
-              boxSizing: 'border-box',
-              width: isMobile ? '100%' : 'auto',
+              boxSizing: "border-box",
+              width: isMobile ? "100%" : "auto",
               flex: 1,
-              padding: '12px'
+              padding: "12px",
             }}
           >
             <Title text="Habilidades" type="subtitle" />
@@ -232,7 +254,7 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                marginTop: '8px'
+                marginTop: "8px",
               }}
             >
               {getPokemonAbilities()}
@@ -244,8 +266,8 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
           sx={{
             display: "flex",
             flexDirection: "column",
-            boxSizing: 'border-box',
-            width: '100%',
+            boxSizing: "border-box",
+            width: "100%",
             padding: "12px",
           }}
         >
@@ -253,10 +275,10 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
           <Box
             sx={{
               display: "flex",
-              flexDirection: isMobile ? 'column' : 'row',
+              flexDirection: isMobile ? "column" : "row",
               alignItems: "flex-start",
-              gap: '8px',
-              marginTop: '8px'
+              gap: "8px",
+              marginTop: "8px",
             }}
           >
             <LikeDislikeButton onChoice={updateUserChoice} />

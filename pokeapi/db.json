@@ -1,312 +1,36 @@
 {
   "pokemons": [
     {
-      "id": "25",
-      "name": "Pikachu",
-      "comment": "Comentário sobre o Pokémon",
-      "rating": true,
-      "githubID": "ID do GitHub"
+      "id": "4e60",
+      "idPokemon": 5,
+      "nomePokemon": "Charmeleon",
+      "comentarioPokemon": "teste",
+      "likeDislike": null,
+      "githubId": 58089293
     },
     {
-      "id": "33",
-      "name": "Bulba",
-      "comment": "Comentário sobre o Pokémon",
-      "rating": true,
-      "githubID": "ID do GitHub"
+      "id": "53b4",
+      "idPokemon": 7,
+      "nomePokemon": "Squirtle",
+      "comentarioPokemon": "teste",
+      "likeDislike": null,
+      "githubId": 58089293
     },
     {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": true,
-      "githubID": "rauancamozzi"
+      "id": "9bd0",
+      "idPokemon": 7,
+      "nomePokemon": "Squirtle",
+      "comentarioPokemon": "tefwff",
+      "likeDislike": "like",
+      "githubId": 58089293
     },
     {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": true,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "6",
-      "name": "Charizard",
-      "comment": "teste",
-      "rating": false,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "10",
-      "name": "Caterpie",
-      "comment": "testete",
-      "rating": true,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste 2",
-      "rating": "dislike",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "testewstsetetwe",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "tewgwegwegew",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "hrethtrnrtnrt",
-      "rating": "dislike",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "26",
-      "name": "Raichu",
-      "comment": "Bom pokemon",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "29",
-      "name": "Nidoran-f",
-      "comment": "",
-      "rating": "dislike",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "29",
-      "name": "Nidoran-f",
-      "comment": "pëssumo",
-      "rating": "dislike",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "41",
-      "name": "Zubat",
-      "comment": "cfgcythdfytuduytrdytrdytt",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "41",
-      "name": "Zubat",
-      "comment": "chkgftyirde76i5rei76r76",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "safwefewf",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "tewwefwef",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "dsadsa",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "dsadsadasda",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "dsadasd",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "dasdasds",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "1",
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": "21",
-      "name": "Spearow",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 1,
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 1,
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 1,
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 5,
-      "name": "Charmeleon",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 5,
-      "name": "Charmeleon",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 5,
-      "name": "Charmeleon",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 5,
-      "name": "Charmeleon",
-      "comment": "teste",
-      "rating": "like",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 5,
-      "name": "Charmeleon",
-      "comment": "teste",
-      "rating": "dislike",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 5,
-      "name": "Charmeleon",
-      "comment": "teste",
-      "rating": "dislike",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 5,
-      "name": "Charmeleon",
-      "comment": "teste",
-      "rating": "dislike",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 5,
-      "name": "Charmeleon",
-      "comment": "teste",
-      "rating": "dislike",
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 1,
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 1,
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 1,
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
-    },
-    {
-      "id": 1,
-      "name": "Bulbasaur",
-      "comment": "teste",
-      "rating": null,
-      "githubID": "rauancamozzi"
+      "id": "d523",
+      "idPokemon": 1,
+      "nomePokemon": "Bulbasaur",
+      "comentarioPokemon": "teste",
+      "likeDislike": "like",
+      "githubId": 58089293
     }
   ]
 }
