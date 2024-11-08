@@ -1,10 +1,15 @@
-import { Drawer, Typography, IconButton, Box, Chip } from "@mui/material";
+import { Drawer, Typography, IconButton, Box, useMediaQuery, useTheme } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { Pokemon } from "../types/Pokemon";
 import React, { useEffect, useState } from "react";
 import api from "../api";
 import LikeDislikeButton from "./LikeDislikeButton";
 import Comment from "../components/Comment";
+import Tag from "./Tag";
+import formatPokemonName from "../utils/formatPokemonName";
+import formatPokemonAbilityName from "../utils/formatPokemonAbilityName";
+import Card from "./Card";
+import Title from "./Title";
 
 interface PokemonDrawerProps {
   open: boolean;
@@ -27,23 +32,37 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
 }) => {
   const [userChoice, setUserChoice] = useState<"like" | "dislike" | null>(null);
   const [pokemons, setPokemons] = useState<PokemonApi[]>([]);
+  
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   useEffect(() => {
     loadPokemons();
   }, []);
+
   const getPokemonAbilities = () => {
     const abilities = rowData?.abilities.map((item) => {
       return item.ability.name;
     });
 
-    return abilities
-      ?.map((item) => item.charAt(0).toUpperCase() + item.slice(1))
-      .join(", ");
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+        }}
+      >
+        {abilities?.map((item, index) => (
+          <Typography key={index}>{formatPokemonAbilityName(item)}</Typography>
+        ))}
+      </Box>
+    );
   };
 
   const getPokemonTypes = () => {
     return rowData?.types.map((value: string, index: number) => {
-      return <Chip key={index} label={value} style={{ margin: 2 }} />
+      return <Tag value={value} key={index} />;
     });
   };
 
@@ -52,11 +71,11 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
     setPokemons(response.data);
   };
 
-  const handleUserComment = (comment: string) => {
+  const updateUserComment = (comment: string) => {
     addPokemon(comment);
   };
 
-  const handleUserChoice = (choice: "like" | "dislike" | null) => {
+  const updateUserChoice = (choice: "like" | "dislike" | null) => {
     setUserChoice(choice);
   };
 
@@ -85,7 +104,7 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
           justifyContent: "space-between",
           alignItems: "flex-start",
           padding: "16px",
-          backgroundColor: "#f9fafb"
+          backgroundColor: "#f9fafb",
         }}
       >
         <Box
@@ -97,18 +116,12 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
           <Typography
             sx={{
               fontSize: "16px",
+              color: "#4b5563",
             }}
           >
             Nº {rowData.id}
           </Typography>
-          <Typography
-            sx={{
-              fontSize: "32px",
-              fontWeight: "bold",
-            }}
-          >
-            {rowData.name}
-          </Typography>
+          <Title text={formatPokemonName(rowData.name)} type="title" />
         </Box>
         <IconButton onClick={onClose}>
           <CloseIcon />
@@ -118,113 +131,27 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
       <Box
         sx={{
           display: "flex",
+          flexDirection: isMobile ? 'column-reverse' : 'none',
           width: "100%",
-          // backgroundColor: { xs: 'red', sm: 'blue', md: 'purple' },
           height: "auto",
           padding: "12px",
           boxSizing: "border-box",
           backgroundColor: "#f9fafb",
-          gap: "16px"
+          gap: "16px",
         }}
       >
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            width: "50%",
-            gap: "12px",
+            flexDirection: isMobile ? 'row' : 'column',
+            alignItems: isMobile ? 'center' : 'none',
+            width: isMobile ? '100%' : '50%',
+            gap: isMobile ? '4px' : '12px',
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "4px",
-              borderRadius: "16px",
-              flex: 1,
-              backgroundColor: "#f3f4f6",
-              border: "solid 1px",
-              borderColor: "#e5e7eb",
-            }}
-          >
-            <Typography>Altura</Typography>
-            <Typography
-              sx={{
-                fontSize: "32px",
-                fontWeight: "bold",
-              }}
-            >
-              {rowData.height / 10} m
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "4px",
-              borderRadius: "16px",
-              flex: 1,
-              backgroundColor: "#f3f4f6",
-              border: "solid 1px",
-              borderColor: "#e5e7eb",
-            }}
-          >
-            <Typography>Peso</Typography>
-            <Typography
-              sx={{
-                fontSize: "32px",
-                fontWeight: "bold",
-              }}
-            >{rowData.weight / 10} kg</Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "4px",
-              borderRadius: "16px",
-              flex: 1,
-              backgroundColor: "#f3f4f6",
-              border: "solid 1px",
-              borderColor: "#e5e7eb",
-            }}
-          >
-            <Typography>Experiência base</Typography>
-            <Typography
-              sx={{
-                fontSize: "32px",
-                fontWeight: "bold",
-              }}
-            >{rowData.base_experience} xp</Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "4px",
-              borderRadius: "16px",
-              flex: 1,
-              backgroundColor: "#f3f4f6",
-              border: "solid 1px",
-              borderColor: "#e5e7eb",
-            }}
-          >
-            <Typography>Habilidades</Typography>
-            <Typography
-              sx={{
-                fontSize: "24px",
-                fontWeight: "bold",
-              }}
-            >{getPokemonAbilities()}</Typography>
-          </Box>
+          <Card title="Altura" text={`${rowData.height / 10}m`} />
+          <Card title="Peso" text={`${rowData.weight / 10}kg`} />
+          <Card title="Experiência base" text={`${rowData.base_experience} XP`} />
         </Box>
 
         <Box
@@ -232,14 +159,13 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "75%",
           }}
         >
           <Box
             sx={{
               borderRadius: "16px",
               border: "solid 1px",
-              borderColor: "#e5e7eb"
+              borderColor: "#e5e7eb",
             }}
           >
             <img
@@ -255,52 +181,88 @@ const PokemonDrawer: React.FC<PokemonDrawerProps> = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-around",
+          alignItems: isMobile ? 'center' : 'none',
           gap: "8px",
           backgroundColor: "#f9fafb",
-          height: "100%"
+          height: "100%",
         }}
       >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "12px",
-        }}
-      >
-        <Typography
-          sx={{
-            fontSize: "20px",
-            fontWeight: "bold"
-          }}
-        >Tipos</Typography>
-        <div>{getPokemonTypes()}</div>
-      </Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "12px",
-        }}
-      >
-        <Typography
-          sx={{
-            fontSize: "20px",
-            fontWeight: "bold"
-          }}
-        >Avalie o Pokémon</Typography>
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            alignItems: "flex-start",
+            flexDirection: 'row',
+            width: '100%',
           }}
         >
-          <LikeDislikeButton onChoice={handleUserChoice} />
-          <Comment onSubmit={handleUserComment} />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              boxSizing: 'border-box',
+              width: isMobile ? '100%' : 'auto',
+              flex: 1,
+              padding: '12px'
+            }}
+          >
+            <Title text="Tipos" type="subtitle" />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: '8px',
+                marginTop: '8px'
+              }}
+            >
+              {getPokemonTypes()}
+            </Box>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              boxSizing: 'border-box',
+              width: isMobile ? '100%' : 'auto',
+              flex: 1,
+              padding: '12px'
+            }}
+          >
+            <Title text="Habilidades" type="subtitle" />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                marginTop: '8px'
+              }}
+            >
+              {getPokemonAbilities()}
+            </Box>
+          </Box>
         </Box>
-      </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            boxSizing: 'border-box',
+            width: '100%',
+            padding: "12px",
+          }}
+        >
+          <Title text="Avalie o Pokémon" type="subtitle" />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: isMobile ? 'column' : 'row',
+              alignItems: "flex-start",
+              gap: '8px',
+              marginTop: '8px'
+            }}
+          >
+            <LikeDislikeButton onChoice={updateUserChoice} />
+            <Comment onSubmit={updateUserComment} />
+          </Box>
+        </Box>
       </Box>
     </Drawer>
   );

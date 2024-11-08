@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getPokemons, getPokemonDetails } from "../services/pokemonService";
 import { Pokemon } from "../types/Pokemon";
 import Box from "@mui/material/Box";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import PokemonDrawer from "./PokemonDrawer";
 import CircularProgress from "@mui/material/CircularProgress";
-import Alert from '@mui/material/Alert';
-import { Chip } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import Tag from "./Tag";
+import formatPokemonName from "../utils/formatPokemonName";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 100 },
@@ -15,13 +16,13 @@ const columns: GridColDef[] = [
     headerName: "Pokémon",
     width: 300,
     renderCell: (params) => (
-      <div style={{ display: 'flex', alignItems: 'center'}}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <img
           src={params.row.image as string}
           alt={params.row.name as string}
-          style={{ width: '50px', height: '50px', marginRight: '10px' }}
+          style={{ width: "50px", height: "50px", marginRight: "10px" }}
         />
-        <span>{params.row.name}</span>
+        <span style={{ color: "#030712" }}>{params.row.name}</span>
       </div>
     ),
     sortComparator: (v1, v2, param1, param2) => {
@@ -32,15 +33,23 @@ const columns: GridColDef[] = [
     },
   },
   {
-    field: 'types',
-    headerName: 'Tipos',
+    field: "types",
+    headerName: "Tipos",
     width: 300,
     renderCell: (params) => (
-      <div>
-        {params.value.map((tag: string, index: number) => (
-          <Chip key={index} label={tag} style={{ margin: 2 }} />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          height: "100%",
+          gap: "4px",
+        }}
+      >
+        {params.value.map((value: string, index: number) => (
+          <Tag value={value} key={index} />
         ))}
-      </div>
+      </Box>
     ),
   },
 ];
@@ -65,7 +74,7 @@ const PokemonDataGrid = () => {
         );
         setPokemonDetails(details);
       } catch (error) {
-        setError('Falha ao buscar Pokémons: ' + error);
+        setError("Falha ao buscar Pokémons: " + error);
       } finally {
         setLoading(false);
       }
@@ -74,20 +83,25 @@ const PokemonDataGrid = () => {
     loadPokemons();
   }, []);
 
-  if (loading) return <CircularProgress
-    sx={{
-      color: "#71717a"
-    }}
-  />;
+  if (loading)
+    return (
+      <CircularProgress
+        sx={{
+          color: "#71717a",
+        }}
+      />
+    );
   if (error) return <Alert severity="error">{error}</Alert>;
 
   const rows = pokemonDetails.map((details) => ({
     ...details,
     id: details.id,
     image: details.sprites.other["official-artwork"].front_default || "",
-    name: details.name.charAt(0).toUpperCase() + details.name.slice(1),
+    name: formatPokemonName(
+      details.name.charAt(0).toUpperCase() + details.name.slice(1)
+    ),
     types: details.types.map((item) => {
-      return item.type.name.charAt(0).toUpperCase() + item.type.name.slice(1)
+      return item.type.name;
     }),
   }));
 
@@ -102,7 +116,7 @@ const PokemonDataGrid = () => {
   };
 
   return (
-    <Box sx={{ height: 'auto', width: '100%' }}>
+    <Box sx={{ height: "auto", width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -115,40 +129,40 @@ const PokemonDataGrid = () => {
         }}
         pageSizeOptions={[10]}
         onRowClick={onClickRow}
-        sx={{ 
-          cursor: 'pointer', 
-          backgroundColor: '#f9fafb',
-          borderRadius: '8px',
-          borderColor: '#d1d5db',
-          '& .MuiDataGrid-columnHeader': {
-            backgroundColor: '#f3f4f6',
-            color: '#71717a'
+        sx={{
+          cursor: "pointer",
+          backgroundColor: "#f9fafb",
+          borderRadius: "8px",
+          borderColor: "#d1d5db",
+          "& .MuiDataGrid-columnHeader": {
+            backgroundColor: "#f3f4f6",
+            color: "#71717a",
           },
-          '& .MuiDataGrid-columnHeaderTitle': {
-            fontWeight: 'bold', 
+          "& .MuiDataGrid-columnHeaderTitle": {
+            fontWeight: "bold",
           },
-          '& .MuiDataGrid-filler': {
-            backgroundColor: '#f3f4f6',
+          "& .MuiDataGrid-filler": {
+            backgroundColor: "#f3f4f6",
           },
-          '& .MuiDataGrid-columnSeparator': {
-            color: "#d1d5db"
+          "& .MuiDataGrid-columnSeparator": {
+            color: "#d1d5db",
           },
-          '& .MuiDataGrid-row.Mui-selected': {
-            backgroundColor: '#f3f4f6',
+          "& .MuiDataGrid-row.Mui-selected": {
+            backgroundColor: "#f3f4f6",
           },
-          '& .MuiDataGrid-row.Mui-selected:hover': {
-            backgroundColor: '#f3f4f6',
+          "& .MuiDataGrid-row.Mui-selected:hover": {
+            backgroundColor: "#f3f4f6",
           },
-          '& .MuiDataGrid-cell:focus, & .MuiDataGrid-cell:focus-within': {
+          "& .MuiDataGrid-cell:focus, & .MuiDataGrid-cell:focus-within": {
             outline: "none",
           },
-          '& .MuiDataGrid-columnHeader:focus': {
-            outline: 'none',
-            boxShadow: 'none',
+          "& .MuiDataGrid-columnHeader:focus": {
+            outline: "none",
+            boxShadow: "none",
           },
-          '& .MuiDataGrid-columnHeader:focus-visible': {
-            outline: 'none',
-          }
+          "& .MuiDataGrid-columnHeader:focus-visible": {
+            outline: "none",
+          },
         }}
       />
       <PokemonDrawer

@@ -1,4 +1,4 @@
-import { IconButton, Stack } from '@mui/material';
+import { IconButton, Stack, useMediaQuery, useTheme } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import React, { useState } from 'react';
@@ -9,6 +9,9 @@ interface LikeDislikeButtonProps {
 
 const LikeDislikeButton: React.FC<LikeDislikeButtonProps> = ({ onChoice }) => {
   const [choice, setChoice] = useState<'like' | 'dislike' | null>(null);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const onClickLike = () => {
     if (choice === 'like') {
@@ -34,9 +37,9 @@ const LikeDislikeButton: React.FC<LikeDislikeButtonProps> = ({ onChoice }) => {
     <Stack
       sx={{
         display: 'flex',
-        flexDirection: 'column',
-        width: 1/5,
-        padding: '12px',
+        flexDirection: isMobile ? 'row' : 'column',
+        boxSizing: 'border-box',
+        width: isMobile ? '100%' : 1/5,
         gap: '2px'
       }}
     >
@@ -47,9 +50,9 @@ const LikeDislikeButton: React.FC<LikeDislikeButtonProps> = ({ onChoice }) => {
             display: 'flex',
             flexDirection: 'row',
             gap: '8px',
-            width: 'auto',
             height: 'auto',
             borderRadius: '8px',
+            flex: 1
           }}
         >
           <ThumbUpIcon />
@@ -61,9 +64,9 @@ const LikeDislikeButton: React.FC<LikeDislikeButtonProps> = ({ onChoice }) => {
             display: 'flex',
             flexDirection: 'row',
             gap: '8px',
-            width: 'auto',
             height: 'auto',
             borderRadius: '8px',
+            flex: 1
           }}
         >
           <ThumbDownIcon />

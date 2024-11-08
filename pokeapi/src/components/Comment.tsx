@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Box, TextField, Button, Snackbar, Alert } from "@mui/material";
+import { Box, TextField, Button, Snackbar, Alert, useTheme, useMediaQuery } from "@mui/material";
 interface CommentProps {
-  onSubmit: (comment: string) => Promise<void>;
+  onSubmit: (comment: string) => void;
 }
 
 const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
@@ -9,6 +9,8 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
   const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
   const [snackbarMessage, setSnackbarMessage] = useState<string>("");
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error'>('success');
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const updateComment = (event: React.ChangeEvent<HTMLInputElement>) => {
     setComment(event.target.value);
@@ -34,7 +36,7 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={2} width="100%" boxSizing="border-box" padding="12px">
+    <Box display="flex" flexDirection="column" gap={2} width="100%" boxSizing="border-box">
       <TextField
         label="Escreva um comentário"
         variant="outlined"
@@ -66,7 +68,7 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
           onClick={submitComment}
           disabled={!comment.trim()}
           sx={{
-            width:'25%',
+            width: isMobile ? '50%' : '25%',
             backgroundColor: '#374151',
             color: '#f9fafb',
             fontWeight: 'bold',
@@ -81,16 +83,17 @@ const Comment: React.FC<CommentProps> = ({ onSubmit }) => {
         open={openSnackbar}
         autoHideDuration={6000}
         onClose={closeSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{
+          vertical: 'bottom', 
+          horizontal: 'center',                    
+        }}
         sx={{
-          position: 'absolute', 
-          bottom: 20, 
-          left: '50%', 
-          transform: 'translateX(-50%)',
-          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Adiciona sombra
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
         }}
       >
-        <Alert onClose={closeSnackbar} severity={snackbarSeverity}>
+        <Alert onClose={closeSnackbar} severity={snackbarSeverity}
+          sx={{ width: '100%' }}
+        >
           {snackbarMessage}
         </Alert>
       </Snackbar>
