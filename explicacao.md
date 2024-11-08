@@ -42,8 +42,13 @@ Por favor, descreva os principais desafios que você encontrou ao desenvolver es
 
 ### Soluções e Melhorias
 - Descreva as soluções que você implementou para contornar os desafios.
+   - Ocorreram erros de tipo nos dados da API, que foram corrigidos mapeando a resposta e definindo os tipos de cada dado.
+   - Para exibir os dados detalhados no Drawer, resolvi passando os dados como props.
+   - A responsividade do design foi resolvida utilizando grid, breakpoints e o hook useMediaQuery do MUI para ajustar os componentes.
 - Comente sobre possíveis melhorias ou funcionalidades adicionais que poderiam ser adicionadas ao projeto.
-
+   - Corrigir a paginação da API, para que o campo de busca, filtre e liste todos itens de todas as páginas, e não apenas os que estão sendo exibidos no Data Grid.
+   - Corrigir o layout ao aumentar a quantidade de itens listados, porque ao definir um grande número de itens, o Data Grid acaba sobrepondo a tela.
+   - Adicionar mais detalhes ao Drawer, como: gênero, evoluções, fraquezas do Pokémon.
 ---
 
 Obrigado por suas respostas detalhadas! Sua visão e explicações nos ajudam a entender melhor seu processo de pensamento e habilidades de resolução de problemas.
